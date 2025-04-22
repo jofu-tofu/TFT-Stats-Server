@@ -1,5 +1,5 @@
 from rest_framework import generics
-from .models import Match
+from tftstats.matches.models import Match
 from .serializers import MatchSerializer
 
 class LatestMatchesView(generics.ListAPIView):

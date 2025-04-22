@@ -1,9 +1,15 @@
-"""
-1.  Clone & split this file into the structure above.
-2.  Create a `.env` with RIOT_API_KEY, POSTGRES_* creds, REDIS_URL.
-3.  docker‑compose up  (sample compose file not included here)
-4.  python manage.py migrate && python manage.py createsuperuser
-5.  python manage.py ingest_puuid <some‑high‑elo‑player‑puuid> --region NA1
-6.  celery -A tftstats worker -l info
-7.  Browse /api/latest‑matches/ (wire up the URL in urls.py)
-"""
+# TFT Stats Server
+
+### Run locally
+$ cp .env.example .env  # fill secrets
+$ docker-compose up -d --build
+$ docker-compose exec web python manage.py migrate
+$ docker-compose exec web python manage.py createsuperuser  # optional
+$ docker-compose exec web python manage.py ingest_puuid <PUUID> --region NA1
+
+Browse http://localhost:8000/api/latest-matches/
+
+### Shutdown
+$ docker-compose down        # keep volumes
+$ docker-compose down -v     # nuke db & redis data
+

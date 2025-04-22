@@ -16,7 +16,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    "stats",
+    "tftstats.matches",
+    "tftstats.ingester",
+    "tftstats.comps",
 ]
 
 DATABASES = {

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Participant, Match
+from tftstats.matches.models import Match, Participant
 
 class UnitSerializer(serializers.Serializer):
     character_id = serializers.CharField()
@@ -10,10 +10,10 @@ class ParticipantSerializer(serializers.ModelSerializer):
     units = UnitSerializer(many=True)
     class Meta:
         model = Participant
-        fields = ("placement", "level", "gold_left", "units", "traits")
+        fields = ("placement", "level", "units", "traits")
 
 class MatchSerializer(serializers.ModelSerializer):
-    participants = ParticipantSerializer(many=True, source="participants")
+    participants = ParticipantSerializer(source="participants", many=True)
     class Meta:
         model = Match
         fields = ("match_id", "patch", "game_datetime", "participants")
